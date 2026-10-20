@@ -1,0 +1,2105 @@
+{
+  "schemaVersion": 2,
+  "project": "Inaya CRM",
+  "verifiedAt": "2026-10-20T12:08:44.437Z",
+  "clientDate": "2026-10-20",
+  "clientTimezone": "Asia/Dubai",
+  "scope": "Audited exact direct-tool baseline for the implemented local React/Vite/Fastify CRM, including spreadsheet import/export. Installed dependency graph is locked by pnpm-lock.yaml; feature coverage and remaining deferred connections are recorded in docs/implementation.md and docs/completion-report.md.",
+  "policy": {
+    "versionSelection": "Current non-deprecated npm latest tag with an exact stable version; no prereleases or version ranges",
+    "transitiveDependencies": "Resolve and audit during installation, then commit pnpm-lock.yaml and use frozen installs",
+    "runtimeProduction": "Node production must use a supported LTS line. The selected latest Current line is a development target until its LTS promotion and revalidation.",
+    "runtimeConsistency": "One configured Node executable/version for project scripts and builds; wrong runtimes fail. App-owned/machine runtimes outside the project are inventoried, not removed.",
+    "reactConsistency": "One exact react/react-dom runtime version and physical module instance per package; strict peers and installed graph validation are required."
+  },
+  "runtime": {
+    "node": {
+      "version": "26.12.0",
+      "releaseDate": "2026-10-14",
+      "channel": "Current",
+      "lts": false,
+      "source": "https://nodejs.org/dist/index.json"
+    },
+    "latestLtsReference": {
+      "version": "24.22.0",
+      "releaseDate": "2026-10-14",
+      "codename": "Krypton",
+      "selected": false
+    },
+    "installedAtResearch": {
+      "node": "v24.20.0",
+      "modified": false
+    }
+  },
+  "database": {
+    "product": "PostgreSQL",
+    "version": "18.6",
+    "channel": "stable",
+    "source": "https://www.postgresql.org/support/versioning/",
+    "hostingPreference": "Provider not selected; PostgreSQL 18.6 is the portable engine baseline"
+  },
+  "managedServices": [
+    {
+      "name": "Google Cloud Translation Advanced",
+      "apiVersion": "v3",
+      "purpose": "Server side narrative translation",
+      "source": "https://docs.cloud.google.com/translate/docs/translate-text",
+      "softwareVersion": "Provider managed; SDK pinned separately",
+      "selectedModel": "Standard NMT text translation",
+      "costPolicy": {
+        "confirmedDate": "2026-10-20",
+        "monthlyFreeCharacterAllowance": 500000,
+        "applicationWarningAtCharacters": 400000,
+        "paidContinuationAuthorized": false,
+        "onLimit": "Pause new provider requests; retain cached translations and original text; user reviews next step",
+        "accounting": "Atomically reserve sent characters for all targets/retries; verify shared eligible allowance and provider billing period before activation",
+        "providerAutoStop": false,
+        "enforcementStatus": "Deferred until user resumes Google connection; no live adapter or budget enforcement implemented"
+      },
+      "connectionStatus": "Explicitly deferred by user; disabled foundation only"
+    }
+  ],
+  "packages": [
+    {
+      "name": "react",
+      "version": "19.3.1",
+      "kind": "runtime",
+      "purpose": "Staff screens, customer form and interactive controls",
+      "plannedUse": "src/web/features",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-14T16:47:15.29Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/react/19.3.1",
+      "integrity": "sha512-QNhWdt7nrgVWWQG58QuGsAR3jv3Hbe4mb4vz7w2csnHavciZJgda1CPNaldF6eVxv90ud3jUXpKlHL69gO38yw==",
+      "license": "MIT",
+      "repository": "git+https://github.com/react/react.git",
+      "engines": {
+        "node": ">=0.10.0"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {},
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Lead forms, lists, details, reports and settings in `src/web/features`.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "UI implementation"
+    },
+    {
+      "name": "react-dom",
+      "version": "19.3.1",
+      "kind": "runtime",
+      "purpose": "Mount React screens into the browser",
+      "plannedUse": "src/web/main.tsx",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-14T16:49:10.081Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/react-dom/19.3.1",
+      "integrity": "sha512-Y0bARz53lhEC1NMCASs0/j+faB/zqt3R8hpvg1e8+61ZVJ4UL0UdC4cBbXfZMcIuhrfgeILTLe+ZeBCavQPtKQ==",
+      "license": "MIT",
+      "repository": "git+https://github.com/react/react.git",
+      "engines": {},
+      "peerDependencies": {
+        "react": "^19.3.1"
+      },
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "scheduler": "^0.28.0"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Mount that same React application in `src/web/main.tsx`; no second React root framework.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "UI implementation"
+    },
+    {
+      "name": "typescript",
+      "version": "7.0.2",
+      "kind": "development",
+      "purpose": "Check frontend, API and shared contract types",
+      "plannedUse": "tsconfig files and build checks",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-07-08T15:55:18.431Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/typescript/7.0.2",
+      "integrity": "sha512-8FYau96o3NKOhbjKi/qNvG/W5jhzxkbdm5sj9AbZ/5T5sWqn3hJgLfGx27sRKZWTvyzCP8dLRBTf5tBTSRVUNA==",
+      "license": "Apache-2.0",
+      "repository": "git+https://github.com/microsoft/TypeScript.git",
+      "engines": {
+        "node": ">=16.20.0"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "@typescript/typescript-aix-ppc64": "7.0.2",
+        "@typescript/typescript-linux-arm": "7.0.2",
+        "@typescript/typescript-linux-x64": "7.0.2",
+        "@typescript/typescript-sunos-x64": "7.0.2",
+        "@typescript/typescript-win32-x64": "7.0.2",
+        "@typescript/typescript-darwin-x64": "7.0.2",
+        "@typescript/typescript-netbsd-x64": "7.0.2",
+        "@typescript/typescript-freebsd-x64": "7.0.2",
+        "@typescript/typescript-linux-arm64": "7.0.2",
+        "@typescript/typescript-linux-ppc64": "7.0.2",
+        "@typescript/typescript-linux-s390x": "7.0.2",
+        "@typescript/typescript-openbsd-x64": "7.0.2",
+        "@typescript/typescript-win32-arm64": "7.0.2",
+        "@typescript/typescript-darwin-arm64": "7.0.2",
+        "@typescript/typescript-netbsd-arm64": "7.0.2",
+        "@typescript/typescript-freebsd-arm64": "7.0.2",
+        "@typescript/typescript-linux-loong64": "7.0.2",
+        "@typescript/typescript-linux-riscv64": "7.0.2",
+        "@typescript/typescript-openbsd-arm64": "7.0.2",
+        "@typescript/typescript-linux-mips64el": "7.0.2"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Check frontend, server and shared contracts through the project compiler; use `vite/client` types for Vite assets.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Project setup"
+    },
+    {
+      "name": "vite",
+      "version": "8.3.4",
+      "kind": "development",
+      "purpose": "Develop and bundle the React frontend",
+      "plannedUse": "vite.config.ts",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-08T12:07:04.441Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/vite/8.3.4",
+      "integrity": "sha512-IftLE8phJhdNRIGNEV4JCCvfNScoZQVfcXaN8TQropWGJtOHcu+iAB9pHcuGvmEb/kddw0LBe/jS8ztdC6xdiQ==",
+      "license": "MIT",
+      "repository": "git+https://github.com/vitejs/vite.git",
+      "engines": {
+        "node": "^20.19.0 || >=22.12.0"
+      },
+      "peerDependencies": {
+        "tsx": "^4.8.1",
+        "jiti": ">=1.21.0",
+        "less": "^4.0.0",
+        "sass": "^1.70.0",
+        "yaml": "^2.4.2",
+        "stylus": ">=0.54.8",
+        "terser": "^5.16.0",
+        "esbuild": "^0.27.0 || ^0.28.0",
+        "sugarss": "^5.0.0",
+        "@types/node": "^20.19.0 || >=22.12.0",
+        "sass-embedded": "^1.70.0",
+        "@vitejs/devtools": "^0.7.1"
+      },
+      "peerDependenciesMeta": {
+        "tsx": {
+          "optional": true
+        },
+        "jiti": {
+          "optional": true
+        },
+        "less": {
+          "optional": true
+        },
+        "sass": {
+          "optional": true
+        },
+        "yaml": {
+          "optional": true
+        },
+        "stylus": {
+          "optional": true
+        },
+        "terser": {
+          "optional": true
+        },
+        "esbuild": {
+          "optional": true
+        },
+        "sugarss": {
+          "optional": true
+        },
+        "@types/node": {
+          "optional": true
+        },
+        "sass-embedded": {
+          "optional": true
+        },
+        "@vitejs/devtools": {
+          "optional": true
+        }
+      },
+      "dependencies": {
+        "postcss": "^8.5.29",
+        "rolldown": "~1.2.12",
+        "picomatch": "^4.0.7",
+        "tinyglobby": "^0.2.17",
+        "lightningcss": "^1.33.0"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Configure frontend assets and API development proxy in `vite.config.ts`.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Project setup"
+    },
+    {
+      "name": "@vitejs/plugin-react",
+      "version": "6.1.2",
+      "kind": "development",
+      "purpose": "Integrate React JSX and refresh with Vite",
+      "plannedUse": "vite.config.ts",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-05T10:08:27.143Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/%40vitejs%2Fplugin-react/6.1.2",
+      "integrity": "sha512-fhJNGUdscQa4HkI0xFxwonWyhnVReCPDbXI7FH7jmzpnVCrFQI7PRrhWecO263610vOrs9tr2Y4xcf8uAdFxbw==",
+      "license": "MIT",
+      "repository": "git+https://github.com/vitejs/vite-plugin-react.git",
+      "engines": {
+        "node": "^20.19.0 || >=22.12.0"
+      },
+      "peerDependencies": {
+        "vite": "^8.0.0",
+        "oxc-transform-react": "^0.152.0",
+        "@rolldown/plugin-babel": "^0.1.7 || ^0.2.0",
+        "babel-plugin-react-compiler": "^1.0.0"
+      },
+      "peerDependenciesMeta": {
+        "oxc-transform-react": {
+          "optional": true
+        },
+        "@rolldown/plugin-babel": {
+          "optional": true
+        },
+        "babel-plugin-react-compiler": {
+          "optional": true
+        }
+      },
+      "dependencies": {
+        "@rolldown/pluginutils": "^1.0.1"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "JSX transformation and development refresh through Vite.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Project setup"
+    },
+    {
+      "name": "tailwindcss",
+      "version": "4.3.3",
+      "kind": "development",
+      "purpose": "Consistent desktop UI styling and logical layout properties",
+      "plannedUse": "src/web/styles",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-07-16T12:03:35.267Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/tailwindcss/4.3.3",
+      "integrity": "sha512-gOhV3P7ufE62QDGg1zVaTgCR+EtPv92k2nIhVcVKcLmxT1sUBsQGhnZj175j+MqRt4zLF7ic+sCYjfhxMxj7YQ==",
+      "license": "MIT",
+      "repository": "https://github.com/tailwindlabs/tailwindcss.git",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {},
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Desktop layout, spacing, states and RTL-aware logical properties in `src/web/styles`.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "UI implementation"
+    },
+    {
+      "name": "@tailwindcss/vite",
+      "version": "4.3.3",
+      "kind": "development",
+      "purpose": "Compile Tailwind through the Vite pipeline",
+      "plannedUse": "vite.config.ts",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-07-16T12:04:06.316Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/%40tailwindcss%2Fvite/4.3.3",
+      "integrity": "sha512-yYU8cogLeSh/ms2jh8Fj7jaba/EWa7Ja6GoUqYZaraEuCI5YS6ms6ObZgjjedm+jm6XZjdNRWBpPP6Z86oOxcw==",
+      "license": "MIT",
+      "repository": "https://github.com/tailwindlabs/tailwindcss.git",
+      "engines": {},
+      "peerDependencies": {
+        "vite": "^5.2.0 || ^6 || ^7 || ^8"
+      },
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "tailwindcss": "4.3.3",
+        "@tailwindcss/node": "4.3.3",
+        "@tailwindcss/oxide": "4.3.3"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Compile Tailwind through Vite; no separate direct PostCSS setup.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "UI implementation"
+    },
+    {
+      "name": "shadcn",
+      "version": "4.22.1",
+      "kind": "generator",
+      "purpose": "Generate only selected dialogs, menus, buttons and form controls",
+      "plannedUse": "src/web/components/ui",
+      "installWhen": "UI component creation; generator only",
+      "publishedAt": "2026-10-18T18:12:18.511Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/shadcn/4.22.1",
+      "integrity": "sha512-LbB4Lro+b0qSVki/tgL5edtKylEnXe1ppxMJC12d7NHPgaT+eSgJGMQULwP72V7X9tbiUq7xfx3VDAfB7jdGoA==",
+      "license": "MIT",
+      "repository": "git+https://github.com/shadcn-ui/ui.git",
+      "engines": {
+        "node": ">=20.18.1"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "cn": "^0.2.4",
+        "ora": "^8.2.0",
+        "zod": "^4.2.0",
+        "diff": "^8.0.2",
+        "open": "^11.0.4",
+        "execa": "^9.6.0",
+        "kleur": "^4.1.5",
+        "socks": "^2.8.8",
+        "dedent": "^1.6.0",
+        "recast": "^0.23.11",
+        "undici": "^7.29.1",
+        "postcss": "^8.5.23",
+        "prompts": "^2.4.2",
+        "fs-extra": "^11.3.1",
+        "ts-morph": "^26.0.0",
+        "commander": "^14.0.0",
+        "deepmerge": "^4.3.1",
+        "fast-glob": "^3.3.3",
+        "fuzzysort": "^3.1.0",
+        "@babel/core": "^7.28.0",
+        "browserslist": "^4.29.3",
+        "@babel/parser": "^7.28.0",
+        "tsconfig-paths": "^4.2.0",
+        "@dotenvx/dotenvx": "^1.48.4",
+        "@shadcn/registry": "0.2.0",
+        "stringify-object": "^5.0.0",
+        "postcss-selector-parser": "^7.1.6",
+        "@babel/preset-typescript": "^7.27.1",
+        "@modelcontextprotocol/sdk": "^1.32.0",
+        "validate-npm-package-name": "^7.0.1",
+        "@types/validate-npm-package-name": "^4.0.2",
+        "@babel/plugin-transform-typescript": "^7.28.0"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Generate only needed UI source controls at the exact selected CLI version; review source and preserve the manifest pins.",
+      "installationScope": "On-demand source generator, intentionally not a project dependency"
+    },
+    {
+      "name": "radix-ui",
+      "version": "1.8.1",
+      "kind": "runtime",
+      "purpose": "Keyboard accessible dialogs, menus and RTL direction context",
+      "plannedUse": "src/web/components/ui",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-12T21:03:38.918Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/radix-ui/1.8.1",
+      "integrity": "sha512-HPfpVGizO9xANlsFSauruLhRe/3+iOt3vPX0MXYle/UQi3gorQrSYtBcdiv0BZYewcl2rvL59qrIuLFMGAmUrw==",
+      "license": "MIT",
+      "repository": "git+https://github.com/radix-ui/primitives.git",
+      "engines": {},
+      "peerDependencies": {
+        "react": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc",
+        "react-dom": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc",
+        "@types/react": "*",
+        "@types/react-dom": "*"
+      },
+      "peerDependenciesMeta": {
+        "@types/react": {
+          "optional": true
+        },
+        "@types/react-dom": {
+          "optional": true
+        }
+      },
+      "dependencies": {
+        "@radix-ui/primitive": "1.2.0",
+        "@radix-ui/react-form": "0.3.0",
+        "@radix-ui/react-menu": "2.2.1",
+        "@radix-ui/react-slot": "1.5.0",
+        "@radix-ui/react-tabs": "1.2.1",
+        "@radix-ui/react-arrow": "1.1.17",
+        "@radix-ui/react-label": "2.1.17",
+        "@radix-ui/react-toast": "1.3.1",
+        "@radix-ui/react-avatar": "1.3.1",
+        "@radix-ui/react-dialog": "1.3.1",
+        "@radix-ui/react-popper": "1.4.0",
+        "@radix-ui/react-portal": "1.2.0",
+        "@radix-ui/react-select": "2.4.1",
+        "@radix-ui/react-slider": "1.6.1",
+        "@radix-ui/react-switch": "1.4.1",
+        "@radix-ui/react-toggle": "1.2.1",
+        "@radix-ui/react-context": "1.3.0",
+        "@radix-ui/react-menubar": "1.2.1",
+        "@radix-ui/react-popover": "1.3.1",
+        "@radix-ui/react-toolbar": "1.2.1",
+        "@radix-ui/react-tooltip": "1.4.1",
+        "@radix-ui/react-checkbox": "1.4.1",
+        "@radix-ui/react-presence": "1.1.11",
+        "@radix-ui/react-progress": "1.2.1",
+        "@radix-ui/react-use-size": "1.1.5",
+        "@radix-ui/react-accordion": "1.3.1",
+        "@radix-ui/react-direction": "1.2.0",
+        "@radix-ui/react-primitive": "2.2.0",
+        "@radix-ui/react-separator": "1.2.0",
+        "@radix-ui/react-collection": "1.2.0",
+        "@radix-ui/react-hover-card": "1.2.1",
+        "@radix-ui/react-collapsible": "1.2.1",
+        "@radix-ui/react-focus-scope": "1.3.1",
+        "@radix-ui/react-radio-group": "1.5.1",
+        "@radix-ui/react-scroll-area": "1.4.0",
+        "@radix-ui/react-alert-dialog": "1.2.1",
+        "@radix-ui/react-aspect-ratio": "1.2.0",
+        "@radix-ui/react-compose-refs": "1.1.5",
+        "@radix-ui/react-context-menu": "2.4.1",
+        "@radix-ui/react-focus-guards": "1.2.0",
+        "@radix-ui/react-roving-focus": "1.2.1",
+        "@radix-ui/react-toggle-group": "1.2.1",
+        "@radix-ui/react-dropdown-menu": "2.2.1",
+        "@radix-ui/react-accessible-icon": "1.2.0",
+        "@radix-ui/react-navigation-menu": "1.4.1",
+        "@radix-ui/react-use-is-hydrated": "0.1.3",
+        "@radix-ui/react-visually-hidden": "1.2.13",
+        "@radix-ui/react-use-callback-ref": "1.1.5",
+        "@radix-ui/react-use-effect-event": "0.0.5",
+        "@radix-ui/react-dismissable-layer": "1.2.1",
+        "@radix-ui/react-use-layout-effect": "1.1.4",
+        "@radix-ui/react-use-escape-keydown": "1.1.6",
+        "@radix-ui/react-password-toggle-field": "0.2.1",
+        "@radix-ui/react-use-controllable-state": "1.3.0",
+        "@radix-ui/react-one-time-password-field": "0.2.1"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Needed dialogs, dropdowns and RTL direction provider in `src/web/components/ui`.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "UI implementation"
+    },
+    {
+      "name": "clsx",
+      "version": "2.1.1",
+      "kind": "runtime",
+      "purpose": "Conditional component state classes",
+      "plannedUse": "src/web/lib/classes.ts",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2024-04-23T05:26:04.645Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/clsx/2.1.1",
+      "integrity": "sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==",
+      "license": "MIT",
+      "repository": "git+https://github.com/lukeed/clsx.git",
+      "engines": {
+        "node": ">=6"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {},
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Compose disabled, selected, error and loading states in `src/web/lib/classes.ts`.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "UI implementation"
+    },
+    {
+      "name": "tailwind-merge",
+      "version": "3.7.0",
+      "kind": "runtime",
+      "purpose": "Resolve conflicting classes on generated components",
+      "plannedUse": "src/web/lib/classes.ts",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-09-12T20:10:15.257Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/tailwind-merge/3.7.0",
+      "integrity": "sha512-XPPUyAc+cvspz3lHTcR/QgPfW2A0lv/xQNIjX3HGhLR+Nq2lHaLq5MtTesHn8GUr3W3DguT2KT5x3NVgRtYwmA==",
+      "license": "MIT",
+      "repository": "https://github.com/dcastil/tailwind-merge.git",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {},
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Merge component defaults and overrides in the same class helper.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "UI implementation"
+    },
+    {
+      "name": "lucide-react",
+      "version": "1.60.0",
+      "kind": "runtime",
+      "purpose": "Navigation, search, assignment and follow-up icons",
+      "plannedUse": "src/web/components",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-20T06:15:28.23Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/lucide-react/1.60.0",
+      "integrity": "sha512-UqxOW0FgAfDyb9VmjKb6/BkOzW6yfhf/QNboKtS2NDsscnNRW2CDzlyhbMKBQ1ontmcxuIDqHJ2AVgFR3NI+GA==",
+      "license": "ISC",
+      "repository": "https://github.com/lucide-icons/lucide.git",
+      "engines": {},
+      "peerDependencies": {
+        "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0",
+        "@types/react": "*"
+      },
+      "peerDependenciesMeta": {
+        "@types/react": {
+          "optional": true
+        }
+      },
+      "dependencies": {},
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Navigation, search, assignment, language and follow-up controls in `src/web/components`.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "UI implementation"
+    },
+    {
+      "name": "react-router",
+      "version": "8.5.0",
+      "kind": "runtime",
+      "purpose": "Navigate login, leads, lead detail, reports and settings",
+      "plannedUse": "src/web/app/router.tsx",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-19T13:49:03.724Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/react-router/8.5.0",
+      "integrity": "sha512-9nEd/deifcTJIIcUaNIyQGkyXD0D6QVB9XD2O5GgHpP3xu3U5RXm87YQ8++Wn8JQWgMBM/5+PjWPM/7n7O7WHA==",
+      "license": "MIT",
+      "repository": "https://github.com/remix-run/react-router",
+      "engines": {
+        "node": ">=22.22.0"
+      },
+      "peerDependencies": {
+        "react": ">=19.2.7",
+        "react-dom": ">=19.2.7",
+        "@types/react": ">=19.2.0",
+        "@types/react-dom": ">=19.2.0"
+      },
+      "peerDependenciesMeta": {
+        "react-dom": {
+          "optional": true
+        },
+        "@types/react": {
+          "optional": true
+        },
+        "@types/react-dom": {
+          "optional": true
+        }
+      },
+      "dependencies": {
+        "cookie-es": "^3.1.1",
+        "@remix-run/route-pattern": "^0.22.1"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Login, leads, lead details, reports and settings in `src/web/app/router.tsx`.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "UI implementation"
+    },
+    {
+      "name": "@tanstack/react-query",
+      "version": "5.104.5",
+      "kind": "runtime",
+      "purpose": "Cache API results and refresh lists after saves",
+      "plannedUse": "src/web/features and API client",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-19T16:57:50.44Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/%40tanstack%2Freact-query/5.104.5",
+      "integrity": "sha512-RORgFe052U+93weaNuqg7qHq7vNVNzXN/VrXqD4bbAuQCWUqOl2lV5Ui9flWk5CVvMyL/Bh27QWhzwH0aaOx9g==",
+      "license": "MIT",
+      "repository": "git+https://github.com/TanStack/query.git",
+      "engines": {},
+      "peerDependencies": {
+        "react": "^18 || ^19",
+        "@types/react": "^18 || ^19"
+      },
+      "peerDependenciesMeta": {
+        "@types/react": {
+          "optional": true
+        }
+      },
+      "dependencies": {
+        "@tanstack/query-core": "5.104.5"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Lead/report queries and mutations in `src/web/features`; clear user-scoped data on logout.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Connected UI implementation"
+    },
+    {
+      "name": "i18next",
+      "version": "26.5.3",
+      "kind": "runtime",
+      "purpose": "Maintain English and Arabic interface messages and locale",
+      "plannedUse": "src/web/i18n",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-19T17:24:19.771Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/i18next/26.5.3",
+      "integrity": "sha512-6pRwOwJ6lBCBB66fqNZaSoUmvsALHMord7FL6GsDhubT1CrPabTMEJIqddm0nn2YEbKofdI/3VAtGrQPuztY1Q==",
+      "license": "MIT",
+      "repository": "git+https://github.com/i18next/i18next.git",
+      "engines": {},
+      "peerDependencies": {
+        "typescript": "^5 || ^6 || ^7"
+      },
+      "peerDependenciesMeta": {
+        "typescript": {
+          "optional": true
+        }
+      },
+      "dependencies": {},
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "English/Arabic resources and user language changes in `src/web/i18n`.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Language implementation"
+    },
+    {
+      "name": "react-i18next",
+      "version": "17.1.0",
+      "kind": "runtime",
+      "purpose": "Bind translated interface messages to React components",
+      "plannedUse": "src/web/i18n and components",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-17T19:01:17.902Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/react-i18next/17.1.0",
+      "integrity": "sha512-4VouOnTDyvhvqXx6WZ+s3/cgSiaLutILdYkO3P1Ms+4qcKR7At+JP4Vi7IeHkVLyVV+DmN1l23Pn73UcwSGGPA==",
+      "license": "MIT",
+      "repository": "git+https://github.com/i18next/react-i18next.git",
+      "engines": {},
+      "peerDependencies": {
+        "react": ">= 16.8.0",
+        "i18next": ">= 26.2.0",
+        "typescript": "^5 || ^6 || ^7"
+      },
+      "peerDependenciesMeta": {
+        "react-dom": {
+          "optional": true
+        },
+        "typescript": {
+          "optional": true
+        },
+        "react-native": {
+          "optional": true
+        }
+      },
+      "dependencies": {
+        "@babel/runtime": "^7.29.7",
+        "html-parse-stringify": "^4.0.1",
+        "use-sync-external-store": "^1.6.0"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Re-render translated controls when the user's language changes.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Language implementation"
+    },
+    {
+      "name": "better-auth",
+      "version": "1.7.12",
+      "kind": "runtime",
+      "purpose": "Staff email/password sessions and account administration",
+      "plannedUse": "src/server/auth.ts",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-20T11:59:45.143Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/better-auth/1.7.12",
+      "integrity": "sha512-f1fEG0QdTslzbmFA+vOGFFW/XXCWkG4kBxLeH9n1vp1otTH9+ZzV6EJ6797GStWeiYYgS5Vnt9xqE12KwSyAAw==",
+      "license": "MIT",
+      "repository": "git+https://github.com/better-auth/better-auth.git",
+      "engines": {},
+      "peerDependencies": {
+        "pg": "^8.0.0",
+        "vue": "^3.0.0",
+        "next": "^14.0.0 || ^15.0.0 || ^16.0.0",
+        "react": "^18.0.0 || ^19.0.0",
+        "mysql2": "^3.0.0",
+        "prisma": "^5.0.0 || ^6.0.0 || ^7.0.0",
+        "svelte": "^4.0.0 || ^5.0.0",
+        "vitest": "^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0",
+        "mongodb": "^6.0.0 || ^7.0.0",
+        "solid-js": "^1.0.0",
+        "react-dom": "^18.0.0 || ^19.0.0",
+        "drizzle-kit": ">=0.31.4 || >=1.0.0-beta.1",
+        "drizzle-orm": "^0.45.2 || >=1.0.0-rc.1 <2.0.0",
+        "@sveltejs/kit": "^2.0.0 || ^3.0.0",
+        "@lynx-js/react": "*",
+        "@prisma/client": "^5.0.0 || ^6.0.0 || ^7.0.0",
+        "@tanstack/react-start": "^1.0.0",
+        "@tanstack/solid-start": "^1.0.0"
+      },
+      "peerDependenciesMeta": {
+        "pg": {
+          "optional": true
+        },
+        "vue": {
+          "optional": true
+        },
+        "next": {
+          "optional": true
+        },
+        "react": {
+          "optional": true
+        },
+        "mysql2": {
+          "optional": true
+        },
+        "prisma": {
+          "optional": true
+        },
+        "svelte": {
+          "optional": true
+        },
+        "vitest": {
+          "optional": true
+        },
+        "mongodb": {
+          "optional": true
+        },
+        "solid-js": {
+          "optional": true
+        },
+        "react-dom": {
+          "optional": true
+        },
+        "drizzle-kit": {
+          "optional": true
+        },
+        "drizzle-orm": {
+          "optional": true
+        },
+        "@sveltejs/kit": {
+          "optional": true
+        },
+        "@lynx-js/react": {
+          "optional": true
+        },
+        "@prisma/client": {
+          "optional": true
+        },
+        "@tanstack/react-start": {
+          "optional": true
+        },
+        "@tanstack/solid-start": {
+          "optional": true
+        }
+      },
+      "dependencies": {
+        "zod": "^4.5.4",
+        "defu": "^6.1.4",
+        "jose": "^6.2.3",
+        "kysely": "^0.28.17 || ^0.29.0",
+        "nanostores": "^1.3.0",
+        "better-call": "1.4.4",
+        "@noble/hashes": "^2.2.0",
+        "@noble/ciphers": "^2.2.0",
+        "@better-auth/core": "1.7.12",
+        "@better-auth/utils": "0.5.0",
+        "@better-fetch/fetch": "1.3.2",
+        "@better-auth/telemetry": "1.7.12",
+        "@better-auth/mongo-adapter": "1.7.12",
+        "@better-auth/kysely-adapter": "1.7.12",
+        "@better-auth/memory-adapter": "1.7.12",
+        "@better-auth/prisma-adapter": "1.7.12",
+        "@better-auth/drizzle-adapter": "1.7.12"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Email/password login and admin account management in `src/server/auth.ts`; public signup disabled. Lead/role authorization remains application code.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Authentication implementation"
+    },
+    {
+      "name": "fastify",
+      "version": "5.12.7",
+      "kind": "runtime",
+      "purpose": "Handle REST JSON endpoints for leads, reports and translation",
+      "plannedUse": "src/server/app.ts and routes",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-13T08:07:53.258Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/fastify/5.12.7",
+      "integrity": "sha512-v4pEPsTRPuqlDIYiQFB+BHjVN4SdHX9u0ABk0ZDUKbbdY1vsNryUd1j4Z+jQEZajvYIVk047Kimva9/AJ79GYw==",
+      "license": "MIT",
+      "repository": "git+https://github.com/fastify/fastify.git",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "pino": "^9.14.0 || ^10.1.0",
+        "rfdc": "^1.3.1",
+        "avvio": "^9.0.0",
+        "semver": "^7.6.0",
+        "toad-cache": "^3.7.0",
+        "find-my-way": "^9.6.0",
+        "@fastify/error": "^4.0.0",
+        "process-warning": "^5.1.0",
+        "abstract-logging": "^2.0.1",
+        "light-my-request": "^6.0.0",
+        "secure-json-parse": "^4.0.0",
+        "@fastify/proxy-addr": "^5.0.0",
+        "fast-json-stringify": "^7.0.0",
+        "@fastify/ajv-compiler": "^4.0.5",
+        "@fastify/fast-json-stringify-compiler": "^5.0.0"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Lead capture, assignment, comments, status, follow-ups, reports and translation routes in `src/server/app.ts` and `src/server/routes`.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "API implementation"
+    },
+    {
+      "name": "@fastify/static",
+      "version": "10.1.6",
+      "kind": "runtime",
+      "purpose": "Serve built frontend and its assets from the same origin as the API",
+      "plannedUse": "src/server/app.ts",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-09T15:09:12.283Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/%40fastify%2Fstatic/10.1.6",
+      "integrity": "sha512-f3x9XisI+y6AIhIfA/+Q3SFsuXeqNNk5HQh5htgHsPxmMLb4pLFskV6eFaLSW3IbI4azrS5np+/tkzXNH99LyQ==",
+      "license": "MIT",
+      "repository": "git+https://github.com/fastify/fastify-static.git",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "glob": "^13.0.0",
+        "fastq": "^1.17.1",
+        "@fastify/send": "^4.0.0",
+        "@fastify/error": "^4.0.0",
+        "fastify-plugin": "^6.0.0",
+        "content-disposition": "^3.0.0",
+        "@fastify/accept-negotiator": "^2.0.0"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Serve the Vite production build from the same origin as the API.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Packaging the connected app"
+    },
+    {
+      "name": "@fastify/helmet",
+      "version": "13.2.0",
+      "kind": "runtime",
+      "purpose": "Set application HTTP security headers",
+      "plannedUse": "src/server/app.ts",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-13T19:29:12.134Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/%40fastify%2Fhelmet/13.2.0",
+      "integrity": "sha512-2u41U5hR9o1u3HUHLT3Njp7vWuWw+XXw8qCBwVY17pRQAN179YYKiU9f7/qEn1ITabgNTkq/Yk6gmrYPSraagA==",
+      "license": "MIT",
+      "repository": "git+https://github.com/fastify/fastify-helmet.git",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "helmet": "^8.0.0",
+        "fastify-plugin": "^6.0.0"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Configure headers in `src/server/app.ts`, compatible with the actual frontend.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Public API and frontend integration"
+    },
+    {
+      "name": "@fastify/rate-limit",
+      "version": "11.2.1",
+      "kind": "runtime",
+      "purpose": "Throttle repeated public enquiry and authentication requests",
+      "plannedUse": "src/server/app.ts and public routes",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-08T14:40:39.052Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/%40fastify%2Frate-limit/11.2.1",
+      "integrity": "sha512-uTQjii3tJUnb6ZyEMcunuvKE3FDKNZEaPpxdyWADDgthHnUV1swdvwuiZfi3DDDgxm1iBrhOkQ/w0yDBQ8qJtA==",
+      "license": "MIT",
+      "repository": "git+https://github.com/fastify/fastify-rate-limit.git",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "@lukeed/ms": "^2.0.2",
+        "ip-address": "^10.2.0",
+        "toad-cache": "^3.7.0",
+        "fastify-plugin": "^6.0.0"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Protect login and public enquiry routes; production shared limits depend on deployment.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Public form integration"
+    },
+    {
+      "name": "drizzle-orm",
+      "version": "0.45.4",
+      "kind": "runtime",
+      "purpose": "Typed queries, role-scoped data and atomic lead/history writes",
+      "plannedUse": "src/server/db and services",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-08T10:50:41.953Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/drizzle-orm/0.45.4",
+      "integrity": "sha512-NiM1YZpJ2UxyeE67DpDDZ+Tsw4YLX3trSlkNT7Tm9eKoUNb1LvaAaQzXgYQsWs+AQ9TUmmwMmBOCXuqqxUWKKQ==",
+      "license": "Apache-2.0",
+      "repository": "git+https://github.com/drizzle-team/drizzle-orm.git",
+      "engines": {},
+      "peerDependencies": {
+        "pg": ">=8",
+        "gel": ">=2",
+        "knex": "*",
+        "kysely": "*",
+        "mysql2": ">=2",
+        "sql.js": ">=1",
+        "sqlite3": ">=5",
+        "postgres": ">=3",
+        "@types/pg": "*",
+        "bun-types": "*",
+        "@netlify/db": ">=0.4.0",
+        "expo-sqlite": ">=14.0.0",
+        "@types/sql.js": "*",
+        "@libsql/client": ">=0.10.0",
+        "@prisma/client": "*",
+        "@upstash/redis": ">=1.34.7",
+        "better-sqlite3": ">=7",
+        "@xata.io/client": "*",
+        "@vercel/postgres": ">=0.8.0",
+        "@opentelemetry/api": "^1.4.1",
+        "@libsql/client-wasm": ">=0.10.0",
+        "@electric-sql/pglite": ">=0.2.0",
+        "@planetscale/database": ">=1.13",
+        "@tidbcloud/serverless": "*",
+        "@types/better-sqlite3": "*",
+        "@aws-sdk/client-rds-data": ">=3",
+        "@neondatabase/serverless": ">=0.10.0",
+        "@cloudflare/workers-types": ">=4",
+        "@op-engineering/op-sqlite": ">=2"
+      },
+      "peerDependenciesMeta": {
+        "pg": {
+          "optional": true
+        },
+        "gel": {
+          "optional": true
+        },
+        "knex": {
+          "optional": true
+        },
+        "kysely": {
+          "optional": true
+        },
+        "mysql2": {
+          "optional": true
+        },
+        "prisma": {
+          "optional": true
+        },
+        "sql.js": {
+          "optional": true
+        },
+        "sqlite3": {
+          "optional": true
+        },
+        "postgres": {
+          "optional": true
+        },
+        "@types/pg": {
+          "optional": true
+        },
+        "bun-types": {
+          "optional": true
+        },
+        "@netlify/db": {
+          "optional": true
+        },
+        "expo-sqlite": {
+          "optional": true
+        },
+        "@types/sql.js": {
+          "optional": true
+        },
+        "@libsql/client": {
+          "optional": true
+        },
+        "@prisma/client": {
+          "optional": true
+        },
+        "@upstash/redis": {
+          "optional": true
+        },
+        "better-sqlite3": {
+          "optional": true
+        },
+        "@xata.io/client": {
+          "optional": true
+        },
+        "@vercel/postgres": {
+          "optional": true
+        },
+        "@opentelemetry/api": {
+          "optional": true
+        },
+        "@libsql/client-wasm": {
+          "optional": true
+        },
+        "@electric-sql/pglite": {
+          "optional": true
+        },
+        "@planetscale/database": {
+          "optional": true
+        },
+        "@tidbcloud/serverless": {
+          "optional": true
+        },
+        "@types/better-sqlite3": {
+          "optional": true
+        },
+        "@aws-sdk/client-rds-data": {
+          "optional": true
+        },
+        "@neondatabase/serverless": {
+          "optional": true
+        },
+        "@cloudflare/workers-types": {
+          "optional": true
+        },
+        "@op-engineering/op-sqlite": {
+          "optional": true
+        }
+      },
+      "dependencies": {},
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Role-scoped reads and atomic lead/history changes in `src/server/db` and services.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Database implementation"
+    },
+    {
+      "name": "drizzle-kit",
+      "version": "0.31.11",
+      "kind": "development",
+      "purpose": "Generate and apply reviewed schema migrations",
+      "plannedUse": "drizzle.config.ts and migrations",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-09-21T10:06:58.727Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/drizzle-kit/0.31.11",
+      "integrity": "sha512-YCYqxTLIB2OCqf6w9/Vef13baBVbwQIPcbT4Y56AfO6B9ajZhDhD8Jkveg/hJvT/iuMloKD/IYYkyMMNhr7Kqg==",
+      "license": "MIT",
+      "repository": "git+https://github.com/drizzle-team/drizzle-orm.git",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "tsx": "^4.21.0",
+        "esbuild": "^0.25.4",
+        "@drizzle-team/brocli": "^0.10.2",
+        "@esbuild-kit/esm-loader": "^2.5.5"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Generate reviewable SQL from `drizzle.config.ts` and schema; apply only intentionally reviewed migrations.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Database implementation"
+    },
+    {
+      "name": "pg",
+      "version": "8.23.1",
+      "kind": "runtime",
+      "purpose": "Provide the PostgreSQL connection pool used by Drizzle",
+      "plannedUse": "src/server/db/client.ts",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-09-30T15:39:58.489Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/pg/8.23.1",
+      "integrity": "sha512-aL96AHANtWjPLDOLqnhx+ngp9+UK7ETEU8VJrDCGvsSSi/mGLcWYsS6Herg7lmaBJe4uwrfqsa7gTEFaSizDoQ==",
+      "license": "MIT",
+      "repository": "git://github.com/brianc/node-postgres.git",
+      "engines": {
+        "node": ">= 16.0.0"
+      },
+      "peerDependencies": {
+        "pg-native": ">=3.0.1"
+      },
+      "peerDependenciesMeta": {
+        "pg-native": {
+          "optional": true
+        }
+      },
+      "dependencies": {
+        "pgpass": "1.0.5",
+        "pg-pool": "^3.14.0",
+        "pg-types": "2.2.0",
+        "pg-protocol": "^1.16.1",
+        "pg-cloudflare": "^1.4.1",
+        "pg-connection-string": "^2.14.1"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Open database connections for Drizzle in `src/server/db/client.ts`. This is not another database server.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Database implementation"
+    },
+    {
+      "name": "@types/pg",
+      "version": "8.23.1",
+      "kind": "development",
+      "purpose": "Type checking for the pg driver",
+      "plannedUse": "TypeScript server checks",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-08-17T20:10:18.296Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/%40types%2Fpg/8.23.1",
+      "integrity": "sha512-fKVHpikPdg4GKks3JuLEhvwSyvwzF23hnabPy6DD8ljVbC7+6J5dQzdv4arV6jqq57djnMgs1HKBxX4P8aBI3A==",
+      "license": "MIT",
+      "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "pg-types": "^2.2.0",
+        "@types/node": "*",
+        "pg-protocol": "*"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Check typed database connection/pool use.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Database implementation"
+    },
+    {
+      "name": "@google-cloud/translate",
+      "version": "10.3.0",
+      "kind": "runtime",
+      "purpose": "Translate narrative text on the server and store cached copies",
+      "plannedUse": "src/server/integrations/google (future adapter); src/server/integrations (disabled core boundary)",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-12T22:10:27.298Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/%40google-cloud%2Ftranslate/10.3.0",
+      "integrity": "sha512-A/MWeeFoyoON1ir5vKP7MKh+yE3mT95plSA/eq3f54BMRnErdXSddGSuveqeEn8v+9bBjXDMD0NfLdDSHE01wQ==",
+      "license": "Apache-2.0",
+      "repository": "git+https://github.com/googleapis/google-cloud-node.git",
+      "engines": {
+        "node": ">=22"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "arrify": "^2.0.0",
+        "extend": "^3.0.2",
+        "is-html": "^2.0.0",
+        "google-gax": "^6.0.0",
+        "@google-cloud/common": "^8.0.1",
+        "@google-cloud/promisify": "^6.0.0"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Future adapter under src/server/integrations/google; keep SDK uninitialized while Google connections are deferred. Core code uses provider-neutral translation contracts and original-text fallback.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Deferred Google text translation connection"
+    },
+    {
+      "name": "zod",
+      "version": "4.6.7",
+      "kind": "runtime",
+      "purpose": "Validate lead forms and API contracts; export JSON schemas as needed",
+      "plannedUse": "src/shared/contracts",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-12T16:29:37.778Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/zod/4.6.7",
+      "integrity": "sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==",
+      "license": "MIT",
+      "repository": "git+https://github.com/colinhacks/zod.git",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {},
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Lead/comment/status contracts in `src/shared/contracts`; export draft-7 JSON Schema for Fastify's default validator.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Form and API implementation"
+    },
+    {
+      "name": "libphonenumber-js",
+      "version": "1.13.15",
+      "kind": "runtime",
+      "purpose": "Normalize country codes and compare customer phone numbers",
+      "plannedUse": "src/server/services/phone.ts",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-08T09:14:28.106Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/libphonenumber-js/1.13.15",
+      "integrity": "sha512-AHdhEQeDFEJ4GKDAQ9AwxChy+v2kUILUB3TGQRpkXMkWePjXTU/WQEzWVQoIx/Gz8fE73Wr5SEuZCy2vk8jrMQ==",
+      "license": "MIT",
+      "repository": "git+https://gitlab.com/catamphetamine/libphonenumber-js.git",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {},
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Normalize international numbers with default +971 in `src/server/services/phone.ts`; flag possible duplicate enquiries without silently merging them.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Lead capture implementation"
+    },
+    {
+      "name": "pnpm",
+      "version": "12.14.0",
+      "kind": "package-manager",
+      "purpose": "Install exact dependencies and maintain the package-manager lockfile",
+      "plannedUse": "packageManager and pnpm-lock.yaml",
+      "installWhen": "Project setup",
+      "publishedAt": "2026-10-15T13:39:41.432Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/pnpm/12.14.0",
+      "integrity": "sha512-wYum2HmT09Fky16JSPMrLAbuhUSH4GzY2GeBNC+z5btGNDZwNHEehoArqpw3vqkGzhkprQjXCITJfYAd8TOJpg==",
+      "license": "MIT",
+      "repository": "https://github.com/pnpm/pnpm",
+      "engines": {
+        "node": ">=18.*"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {},
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "One selected package manager, declared in `package.json`.",
+      "installationScope": "Selected user-level package manager"
+    },
+    {
+      "name": "@types/node",
+      "version": "26.6.5",
+      "kind": "development",
+      "purpose": "Type checking for Node server APIs",
+      "plannedUse": "TypeScript server checks",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-09T18:46:47.657Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/%40types%2Fnode/26.6.5",
+      "integrity": "sha512-uMzsv9stDdofIZBx4UGh4Z9ZgXnGC9seRDscilBcTHAeOFk67MZg/k9bWVfO+bk4qZmG+l52hRnLwUiH2LnJTg==",
+      "license": "MIT",
+      "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "undici-types": "~8.9.0"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Check server/runtime APIs against the selected Node major. This is not a Node executable.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Project setup"
+    },
+    {
+      "name": "@types/react",
+      "version": "19.3.0",
+      "kind": "development",
+      "purpose": "Type checking for React components",
+      "plannedUse": "TypeScript web checks",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-09-09T18:08:49.75Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/%40types%2Freact/19.3.0",
+      "integrity": "sha512-N0rFCuH9YoxG9/m61l9MfpJKfmLOVU0em7ipIz6TRgSSkvReLB9vL85GB+yr8Bs5leqpvg96JSwF4ZS1s4viQg==",
+      "license": "MIT",
+      "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "csstype": "^3.2.2"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Check components and hooks; this is not another React runtime version.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Project setup"
+    },
+    {
+      "name": "@types/react-dom",
+      "version": "19.3.0",
+      "kind": "development",
+      "purpose": "Type checking for browser mounting",
+      "plannedUse": "TypeScript web checks",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-09-09T18:07:51.886Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/%40types%2Freact-dom/19.3.0",
+      "integrity": "sha512-ZI7bU42mZXXKHn/qNLEw2IrbiINU7X5+vfgdixBHkCNpYWXjKgfQ/P+uyGb5CjOLB9UcnTeg3rylQtV2hym44Q==",
+      "license": "MIT",
+      "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "engines": {},
+      "peerDependencies": {
+        "@types/react": "^19.3.0"
+      },
+      "peerDependenciesMeta": {},
+      "dependencies": {},
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Check browser mounting and DOM integrations.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Project setup"
+    },
+    {
+      "name": "@biomejs/biome",
+      "version": "2.5.15",
+      "kind": "development",
+      "purpose": "One formatter and linter for TypeScript React and server code",
+      "plannedUse": "biome.json and development checks",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-09-30T15:23:18.673Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/%40biomejs%2Fbiome/2.5.15",
+      "integrity": "sha512-WZTW4slm/pdkh92K6t/3aEN++44JD1PQ7squ7RCMLI1flHGl43DVOIGXvCjHiZgBMO1V4uYxoFNtqrIA4qGuIQ==",
+      "license": "MIT OR Apache-2.0",
+      "repository": "git+https://github.com/biomejs/biome.git",
+      "engines": {
+        "node": ">=14.21.3"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {},
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "One code style/lint tool; TypeScript still checks types. No parallel ESLint/Prettier setup.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Project setup"
+    },
+    {
+      "name": "@playwright/test",
+      "version": "1.64.1",
+      "kind": "development",
+      "purpose": "Verify role access, capture, status changes and English/Arabic browser flows",
+      "plannedUse": "tests/e2e",
+      "installWhen": "Authorized initial dependency baseline before CRM feature implementation",
+      "publishedAt": "2026-10-14T11:58:13.696Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/%40playwright%2Ftest/1.64.1",
+      "integrity": "sha512-IaYGml/nSOiZWROfPtuIL7neuu9qDOZ3TNvNljUIrhDMxiGTgPjzj/g9p9RxpS2tSepPDRY+UwAaEeiKtUvIAg==",
+      "license": "Apache-2.0",
+      "repository": "git+https://github.com/microsoft/playwright.git",
+      "engines": {
+        "node": ">=20"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "playwright": "1.64.1"
+      },
+      "latestVerifiedAt": "2026-10-20T12:08:44.437Z",
+      "codexUsage": "Desktop Chromium checks for login, roles, lead capture, assignment and English/Arabic layouts in `tests/e2e`.",
+      "installationScope": "Installed in this project; current feature use and explicitly deferred integration work are documented in docs/implementation.md.",
+      "featureStage": "Once connected user flows are available"
+    },
+    {
+      "name": "read-excel-file",
+      "version": "9.3.12",
+      "kind": "runtime",
+      "purpose": "Read XLSX rows in an isolated browser worker for manager import preview.",
+      "plannedUse": "src/web/features/import-worker.ts and src/server/services/import-export.ts",
+      "installWhen": "Now: requested spreadsheet import/export completion",
+      "publishedAt": "2026-10-07T22:10:51.657Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/read-excel-file/9.3.12",
+      "integrity": "sha512-benNAoQbe5HqoTi3qrQkR8wMeHq0gVWLt2Br73hVvmBPGdzMf9OLGsps/812AfZ+bvzVYsUyhF77Y3o4B51yCA==",
+      "license": "MIT",
+      "repository": "git+https://gitlab.com/catamphetamine/read-excel-file.git",
+      "engines": {
+        "node": ">=18"
+      },
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "saxen": "^11.1.0",
+        "fflate": "^0.8.3",
+        "worker-f": "^0.1.12",
+        "unzipper-esm": "^0.13.3"
+      },
+      "latestVerifiedAt": "2026-10-20T13:46:49.285Z",
+      "codexUsage": "Read XLSX rows in an isolated browser worker for manager import preview.",
+      "installationScope": "Project only, exact version, installed for file import/export",
+      "featureStage": "File import/export implementation"
+    },
+    {
+      "name": "papaparse",
+      "version": "5.7.0",
+      "kind": "runtime",
+      "purpose": "Parse quoted CSV files in the import worker and generate Excel-compatible CSV exports with formula escaping.",
+      "plannedUse": "src/web/features/import-worker.ts and src/server/services/import-export.ts",
+      "installWhen": "Now: requested spreadsheet import/export completion",
+      "publishedAt": "2026-08-24T14:28:22.981Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/papaparse/5.7.0",
+      "integrity": "sha512-qBGxg/7Q3Kl9Wfhrz2Z74UnvnHTXLNG6jmKJFeBvP2+y4lV7So+7SR62+Zd47JvdrCkX+nDcnr0ObPzek/+6RA==",
+      "license": "MIT",
+      "repository": "git+https://github.com/mholt/PapaParse.git",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {},
+      "latestVerifiedAt": "2026-10-20T13:46:49.313Z",
+      "codexUsage": "Parse quoted CSV files in the import worker and generate Excel-compatible CSV exports with formula escaping.",
+      "installationScope": "Project only, exact version, installed for file import/export",
+      "featureStage": "File import/export implementation"
+    },
+    {
+      "name": "@types/papaparse",
+      "version": "5.5.2",
+      "kind": "development",
+      "purpose": "Type-check CSV parser/export calls; no runtime bundle.",
+      "plannedUse": "src/web/features/import-worker.ts and src/server/services/import-export.ts",
+      "installWhen": "Now: requested spreadsheet import/export completion",
+      "publishedAt": "2025-12-13T11:01:57.309Z",
+      "verifiedTag": "latest",
+      "registrySource": "https://registry.npmjs.org/@types/papaparse/5.5.2",
+      "integrity": "sha512-gFnFp/JMzLHCwRf7tQHrNnfhN4eYBVYYI897CGX4MY1tzY9l2aLkVyx2IlKZ/SAqDbB3I1AOZW5gTMGGsqWliA==",
+      "license": "MIT",
+      "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "engines": {},
+      "peerDependencies": {},
+      "peerDependenciesMeta": {},
+      "dependencies": {
+        "@types/node": "*"
+      },
+      "latestVerifiedAt": "2026-10-20T13:46:49.92Z",
+      "codexUsage": "Type-check CSV parser/export calls; no runtime bundle.",
+      "installationScope": "Project only, exact version, installed for file import/export",
+      "featureStage": "File import/export implementation"
+    }
+  ],
+  "validation": {
+    "stableLatestPackages": 34,
+    "declaredCompatibility": {
+      "checks": 40,
+      "failures": 0,
+      "unselectedRequiredPeers": 0,
+      "method": "Node engines and selected peer ranges evaluated using the npm bundled semver library",
+      "details": [
+        {
+          "package": "react",
+          "type": "node-engine",
+          "selected": "26.12.0",
+          "range": ">=0.10.0",
+          "pass": true
+        },
+        {
+          "package": "react-dom",
+          "type": "peer",
+          "peer": "react",
+          "selected": "19.3.1",
+          "range": "^19.3.1",
+          "pass": true
+        },
+        {
+          "package": "typescript",
+          "type": "node-engine",
+          "selected": "26.12.0",
+          "range": ">=16.20.0",
+          "pass": true
+        },
+        {
+          "package": "vite",
+          "type": "node-engine",
+          "selected": "26.12.0",
+          "range": "^20.19.0 || >=22.12.0",
+          "pass": true
+        },
+        {
+          "package": "vite",
+          "type": "peer",
+          "peer": "@types/node",
+          "selected": "26.6.5",
+          "range": "^20.19.0 || >=22.12.0",
+          "pass": true
+        },
+        {
+          "package": "@vitejs/plugin-react",
+          "type": "node-engine",
+          "selected": "26.12.0",
+          "range": "^20.19.0 || >=22.12.0",
+          "pass": true
+        },
+        {
+          "package": "@vitejs/plugin-react",
+          "type": "peer",
+          "peer": "vite",
+          "selected": "8.3.4",
+          "range": "^8.0.0",
+          "pass": true
+        },
+        {
+          "package": "@tailwindcss/vite",
+          "type": "peer",
+          "peer": "vite",
+          "selected": "8.3.4",
+          "range": "^5.2.0 || ^6 || ^7 || ^8",
+          "pass": true
+        },
+        {
+          "package": "shadcn",
+          "type": "node-engine",
+          "selected": "26.12.0",
+          "range": ">=20.18.1",
+          "pass": true
+        },
+        {
+          "package": "radix-ui",
+          "type": "peer",
+          "peer": "react",
+          "selected": "19.3.1",
+          "range": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc",
+          "pass": true
+        },
+        {
+          "package": "radix-ui",
+          "type": "peer",
+          "peer": "react-dom",
+          "selected": "19.3.1",
+          "range": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc",
+          "pass": true
+        },
+        {
+          "package": "radix-ui",
+          "type": "peer",
+          "peer": "@types/react",
+          "selected": "19.3.0",
+          "range": "*",
+          "pass": true
+        },
+        {
+          "package": "radix-ui",
+          "type": "peer",
+          "peer": "@types/react-dom",
+          "selected": "19.3.0",
+          "range": "*",
+          "pass": true
+        },
+        {
+          "package": "clsx",
+          "type": "node-engine",
+          "selected": "26.12.0",
+          "range": ">=6",
+          "pass": true
+        },
+        {
+          "package": "lucide-react",
+          "type": "peer",
+          "peer": "react",
+          "selected": "19.3.1",
+          "range": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0",
+          "pass": true
+        },
+        {
+          "package": "lucide-react",
+          "type": "peer",
+          "peer": "@types/react",
+          "selected": "19.3.0",
+          "range": "*",
+          "pass": true
+        },
+        {
+          "package": "react-router",
+          "type": "node-engine",
+          "selected": "26.12.0",
+          "range": ">=22.22.0",
+          "pass": true
+        },
+        {
+          "package": "react-router",
+          "type": "peer",
+          "peer": "react",
+          "selected": "19.3.1",
+          "range": ">=19.2.7",
+          "pass": true
+        },
+        {
+          "package": "react-router",
+          "type": "peer",
+          "peer": "react-dom",
+          "selected": "19.3.1",
+          "range": ">=19.2.7",
+          "pass": true
+        },
+        {
+          "package": "react-router",
+          "type": "peer",
+          "peer": "@types/react",
+          "selected": "19.3.0",
+          "range": ">=19.2.0",
+          "pass": true
+        },
+        {
+          "package": "react-router",
+          "type": "peer",
+          "peer": "@types/react-dom",
+          "selected": "19.3.0",
+          "range": ">=19.2.0",
+          "pass": true
+        },
+        {
+          "package": "@tanstack/react-query",
+          "type": "peer",
+          "peer": "react",
+          "selected": "19.3.1",
+          "range": "^18 || ^19",
+          "pass": true
+        },
+        {
+          "package": "@tanstack/react-query",
+          "type": "peer",
+          "peer": "@types/react",
+          "selected": "19.3.0",
+          "range": "^18 || ^19",
+          "pass": true
+        },
+        {
+          "package": "i18next",
+          "type": "peer",
+          "peer": "typescript",
+          "selected": "7.0.2",
+          "range": "^5 || ^6 || ^7",
+          "pass": true
+        },
+        {
+          "package": "react-i18next",
+          "type": "peer",
+          "peer": "react",
+          "selected": "19.3.1",
+          "range": ">= 16.8.0",
+          "pass": true
+        },
+        {
+          "package": "react-i18next",
+          "type": "peer",
+          "peer": "i18next",
+          "selected": "26.5.3",
+          "range": ">= 26.2.0",
+          "pass": true
+        },
+        {
+          "package": "react-i18next",
+          "type": "peer",
+          "peer": "typescript",
+          "selected": "7.0.2",
+          "range": "^5 || ^6 || ^7",
+          "pass": true
+        },
+        {
+          "package": "better-auth",
+          "type": "peer",
+          "peer": "pg",
+          "selected": "8.23.1",
+          "range": "^8.0.0",
+          "pass": true
+        },
+        {
+          "package": "better-auth",
+          "type": "peer",
+          "peer": "react",
+          "selected": "19.3.1",
+          "range": "^18.0.0 || ^19.0.0",
+          "pass": true
+        },
+        {
+          "package": "better-auth",
+          "type": "peer",
+          "peer": "react-dom",
+          "selected": "19.3.1",
+          "range": "^18.0.0 || ^19.0.0",
+          "pass": true
+        },
+        {
+          "package": "better-auth",
+          "type": "peer",
+          "peer": "drizzle-kit",
+          "selected": "0.31.11",
+          "range": ">=0.31.4 || >=1.0.0-beta.1",
+          "pass": true
+        },
+        {
+          "package": "better-auth",
+          "type": "peer",
+          "peer": "drizzle-orm",
+          "selected": "0.45.4",
+          "range": "^0.45.2 || >=1.0.0-rc.1 <2.0.0",
+          "pass": true
+        },
+        {
+          "package": "drizzle-orm",
+          "type": "peer",
+          "peer": "pg",
+          "selected": "8.23.1",
+          "range": ">=8",
+          "pass": true
+        },
+        {
+          "package": "drizzle-orm",
+          "type": "peer",
+          "peer": "@types/pg",
+          "selected": "8.23.1",
+          "range": "*",
+          "pass": true
+        },
+        {
+          "package": "pg",
+          "type": "node-engine",
+          "selected": "26.12.0",
+          "range": ">= 16.0.0",
+          "pass": true
+        },
+        {
+          "package": "@google-cloud/translate",
+          "type": "node-engine",
+          "selected": "26.12.0",
+          "range": ">=22",
+          "pass": true
+        },
+        {
+          "package": "pnpm",
+          "type": "node-engine",
+          "selected": "26.12.0",
+          "range": ">=18.*",
+          "pass": true
+        },
+        {
+          "package": "@types/react-dom",
+          "type": "peer",
+          "peer": "@types/react",
+          "selected": "19.3.0",
+          "range": "^19.3.0",
+          "pass": true
+        },
+        {
+          "package": "@biomejs/biome",
+          "type": "node-engine",
+          "selected": "26.12.0",
+          "range": ">=14.21.3",
+          "pass": true
+        },
+        {
+          "package": "@playwright/test",
+          "type": "node-engine",
+          "selected": "26.12.0",
+          "range": ">=20",
+          "pass": true
+        }
+      ]
+    },
+    "fastifyPlugins": {
+      "checks": 3,
+      "failures": 0,
+      "details": [
+        {
+          "package": "@fastify/static",
+          "framework": "fastify",
+          "selected": "5.12.7",
+          "range": "5.x",
+          "source": "https://raw.githubusercontent.com/fastify/fastify-static/v10.1.6/index.js",
+          "pass": true
+        },
+        {
+          "package": "@fastify/helmet",
+          "framework": "fastify",
+          "selected": "5.12.7",
+          "range": "5.x",
+          "source": "https://raw.githubusercontent.com/fastify/fastify-helmet/v13.2.0/index.js",
+          "pass": true
+        },
+        {
+          "package": "@fastify/rate-limit",
+          "framework": "fastify",
+          "selected": "5.12.7",
+          "range": "5.x",
+          "source": "https://raw.githubusercontent.com/fastify/fastify-rate-limit/v11.2.1/index.js",
+          "pass": true
+        }
+      ]
+    },
+    "directDependencyAdvisories": {
+      "endpoint": "https://registry.npmjs.org/-/npm/v1/security/advisories/bulk",
+      "status": 200,
+      "packageNamesWithAdvisories": [],
+      "results": {},
+      "scope": "Selected direct package versions only; not a full dependency tree audit"
+    },
+    "applicationInstall": "32 exact direct project dependencies installed; frozen lockfile verification passed",
+    "applicationBuild": "CRM not implemented; React Vite Tailwind dependency smoke build passed",
+    "databaseConnection": "Local PostgreSQL 18.6 application login and English Arabic text round-trip passed",
+    "translationApiCall": "not performed",
+    "typescriptSmokeCheck": "passed",
+    "migrationGenerator": "TypeScript config and schema SQL generation passed; probe migration not applied to the application database",
+    "fullDependencyAudit": {
+      "verifiedAt": "2026-10-20T12:12:54.037Z",
+      "tool": "pnpm audit",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0
+      },
+      "result": "passed; zero known vulnerabilities in the installed tree",
+      "remainingDeprecatedHelpers": [
+        "@esbuild-kit/core-utils@3.3.2",
+        "@esbuild-kit/esm-loader@2.6.5",
+        "node-domexception@1.0.0"
+      ]
+    },
+    "latestRefresh": {
+      "verifiedAt": "2026-10-20T12:08:44.437Z",
+      "packageChecks": 34,
+      "changes": [
+        {
+          "name": "better-auth",
+          "from": "1.7.11",
+          "to": "1.7.12"
+        }
+      ],
+      "status": "completed; full check:installation passed from C:/Windows/system32 via project wrapper",
+      "completedAt": "2026-10-20T12:16:42.023Z",
+      "checks": {
+        "frozenInstall": "passed",
+        "runtimeAndReactConsistency": "passed",
+        "liveLatestPackages": "34/34 passed",
+        "gitLatest": "v2.56.0.windows.2",
+        "fullAudit": "zero known vulnerabilities",
+        "databaseAndApi": "passed",
+        "viteReactTailwindBuild": "passed",
+        "typescript": "passed",
+        "migrationGeneration": "passed, no SQL applied",
+        "chromiumLaunch": "passed",
+        "wrongMachineAndCodexNode": "both rejected"
+      },
+      "react": {
+        "react": {
+          "version": "19.3.1",
+          "physicalInstances": 1
+        },
+        "react-dom": {
+          "version": "19.3.1",
+          "physicalInstances": 1
+        },
+        "@types/react": {
+          "version": "19.3.0",
+          "physicalInstances": 1
+        },
+        "@types/react-dom": {
+          "version": "19.3.0",
+          "physicalInstances": 1
+        }
+      },
+      "chromium": {
+        "playwright": "1.64.1",
+        "version": "156.0.8078.4"
+      },
+      "recentReleaseExceptions": [
+        "better-auth@1.7.12",
+        "@better-auth/core@1.7.12",
+        "@better-auth/telemetry@1.7.12",
+        "@better-auth/mongo-adapter@1.7.12",
+        "@better-auth/kysely-adapter@1.7.12",
+        "@better-auth/memory-adapter@1.7.12",
+        "@better-auth/prisma-adapter@1.7.12",
+        "@better-auth/drizzle-adapter@1.7.12",
+        "better-call@1.4.4"
+      ],
+      "reports": [
+        ".local/dependency-consistency.json",
+        ".local/setup-check.json",
+        ".local/browser-setup-check.json",
+        ".local/migration-setup-check.json",
+        ".local/dependency-audit.json"
+      ]
+    },
+    "integrationFoundation": {
+      "verifiedAt": "2026-10-20T12:41:20.291Z",
+      "typeCheck": "passed",
+      "focusedTests": 5,
+      "passed": 5,
+      "liveConnections": "none",
+      "scope": "Disabled defaults, original-text fallback, isolated languages, inactive lead capture and rejected premature activation"
+    }
+  },
+  "architecture": {
+    "frontend": "React Vite SPA",
+    "api": "Fastify REST JSON",
+    "deployment": "One application serving static frontend and API on the same origin",
+    "hostingProvider": "Pending budget and region; no mandatory Google hosting selection",
+    "integrationBoundary": "src/server/integrations: disabled provider-neutral ports; Google connection and public capture/measurement deferred"
+  },
+  "conditionalServices": [
+    {
+      "name": "Google Cloud Run",
+      "purpose": "Hosting preference for a standard Node container; no deployment provisioned",
+      "source": "https://docs.cloud.google.com/run/docs/overview/what-is-cloud-run",
+      "softwareVersion": "Provider managed; image digest to be captured during deployment",
+      "status": "not selected as a core dependency",
+      "condition": "Consider during hosting and operating budget selection; alternatives remain possible."
+    },
+    {
+      "name": "Google Cloud SQL for PostgreSQL",
+      "purpose": "Managed relational database and backups",
+      "source": "https://docs.cloud.google.com/sql/docs/postgres/db-versions",
+      "softwareVersion": "18.6 baseline with provider-managed patch maintenance",
+      "status": "not selected as a core dependency",
+      "condition": "Consider during hosting and operating budget selection; alternatives remain possible."
+    },
+    {
+      "name": "Google Cloud Secret Manager",
+      "purpose": "Server configuration and credentials",
+      "source": "https://docs.cloud.google.com/secret-manager/docs/overview",
+      "softwareVersion": "Provider managed; deployment environment integration",
+      "status": "not selected as a core dependency",
+      "condition": "Consider during hosting and operating budget selection; alternatives remain possible."
+    },
+    {
+      "name": "Google Cloud Scheduler",
+      "purpose": "Scheduled authenticated follow-up notification processing",
+      "source": "https://docs.cloud.google.com/scheduler/docs/overview",
+      "softwareVersion": "Provider managed",
+      "status": "not selected as a core dependency",
+      "condition": "No initial dependency: derive due/overdue in the API while the app is in use. Reconsider only for unattended work."
+    },
+    {
+      "name": "Google tag",
+      "purpose": "Future Google Ads conversion measurement on a successfully saved enquiry",
+      "source": "https://developers.google.com/tag-platform/gtagjs",
+      "softwareVersion": "Provider managed script; no invented npm or semver version",
+      "status": "not selected as a core dependency",
+      "condition": "Configure if Google Ads conversion measurement is enabled. Lead capture itself uses the owned form."
+    }
+  ],
+  "excludedPackages": [
+    {
+      "name": "next",
+      "status": "not selected for initial installation",
+      "reason": "Removed: React Vite SPA is the selected frontend; Fastify provides the API.",
+      "previouslyResearchedVersion": "16.4.2"
+    },
+    {
+      "name": "react-is",
+      "status": "not selected for initial installation",
+      "reason": "No direct requirement when Recharts is not selected.",
+      "previouslyResearchedVersion": "19.3.1"
+    },
+    {
+      "name": "@tailwindcss/postcss",
+      "status": "not selected for initial installation",
+      "reason": "Replaced by the Vite Tailwind integration.",
+      "previouslyResearchedVersion": "4.3.3"
+    },
+    {
+      "name": "postcss",
+      "status": "not selected for initial installation",
+      "reason": "No direct pin needed for the selected Vite integration; parent packages manage any transitive dependency.",
+      "previouslyResearchedVersion": "8.5.31"
+    },
+    {
+      "name": "next-intl",
+      "status": "not selected for initial installation",
+      "reason": "Replaced by i18next and react-i18next for the selected React SPA.",
+      "previouslyResearchedVersion": "4.14.9"
+    },
+    {
+      "name": "tw-animate-css",
+      "status": "not selected for initial installation",
+      "reason": "Deferred: optional component animations are not a confirmed feature.",
+      "previouslyResearchedVersion": "1.4.0"
+    },
+    {
+      "name": "react-hook-form",
+      "status": "not selected for initial installation",
+      "reason": "Deferred: four lead fields can use native React form state and shared Zod validation.",
+      "previouslyResearchedVersion": "7.90.0"
+    },
+    {
+      "name": "@hookform/resolvers",
+      "status": "not selected for initial installation",
+      "reason": "Not needed without React Hook Form.",
+      "previouslyResearchedVersion": "6.0.0"
+    },
+    {
+      "name": "@tanstack/react-table",
+      "status": "not selected for initial installation",
+      "reason": "Deferred: server pagination, filters and a semantic table cover the initial lead list.",
+      "previouslyResearchedVersion": "9.3.1"
+    },
+    {
+      "name": "recharts",
+      "status": "not selected for initial installation",
+      "reason": "Deferred: reporting requires summary cards and tables; charts have not been requested.",
+      "previouslyResearchedVersion": "3.10.1"
+    },
+    {
+      "name": "vitest",
+      "status": "not selected for initial installation",
+      "reason": "Not selected: use the built-in Node test runner for server/domain rules initially.",
+      "previouslyResearchedVersion": "5.0.5"
+    },
+    {
+      "name": "playwright-core",
+      "status": "not selected for initial installation",
+      "reason": "No direct pin: the selected Playwright test package manages its browser tooling dependency.",
+      "previouslyResearchedVersion": "1.64.1"
+    },
+    {
+      "name": "@axe-core/playwright",
+      "status": "not selected for initial installation",
+      "reason": "Deferred accessibility audit helper; not required for the first browser flow checks.",
+      "previouslyResearchedVersion": "4.14.0"
+    },
+    {
+      "name": "eslint",
+      "status": "not selected for initial installation",
+      "reason": "Replaced by one Biome formatter/linter setup.",
+      "previouslyResearchedVersion": "10.13.0"
+    },
+    {
+      "name": "eslint-config-next",
+      "status": "not selected for initial installation",
+      "reason": "Removed with Next.js; no Next lint rules are needed.",
+      "previouslyResearchedVersion": "16.4.2"
+    },
+    {
+      "name": "prettier",
+      "status": "not selected for initial installation",
+      "reason": "Replaced by one Biome formatter/linter setup.",
+      "previouslyResearchedVersion": "3.9.10"
+    }
+  ],
+  "conditionalDeploymentCli": {
+    "name": "Google Cloud CLI",
+    "version": "589.0.0",
+    "channel": "rapid official available distribution",
+    "source": "https://dl.google.com/dl/cloudsdk/channels/rapid/components-2.json",
+    "status": "Only if Google Cloud hosting is selected; not a core setup requirement"
+  },
+  "localInstallation": {
+    "completedAt": "2026-10-20T10:39:27.686Z",
+    "scope": "Windows current-user toolchain; project activation required to prioritize exact binaries",
+    "versions": {
+      "node": "v26.12.0",
+      "pnpm": "12.14.0",
+      "npm": "11.20.0",
+      "postgres": "postgres (PostgreSQL) 18.6",
+      "git": "git version 2.56.0.windows.2"
+    },
+    "projectDirectPackages": 32,
+    "packageLock": "pnpm-lock.yaml",
+    "configuration": "pnpm-workspace.yaml",
+    "activation": "scripts/dev-shell.ps1",
+    "database": {
+      "timezone": "Asia/Dubai",
+      "name": "inaya_crm",
+      "port": 5432,
+      "windowsServiceRegistered": false,
+      "role": "inaya_app",
+      "host": "127.0.0.1"
+    },
+    "report": "Ignored .local/installation-report.json; does not contain passwords",
+    "generator": "shadcn remains an on-demand source generator; not installed as a project runtime dependency",
+    "playwright": "1.64.1 with matching Chromium 156.0.8078.4 installed; browser fixture launch passed",
+    "refreshStatus": "completed and verified",
+    "refreshCompletedAt": "2026-10-20T12:16:42.023Z",
+    "consistency": "One project Node executable; one reachable/physical instance each for React, React DOM and React types; 32 exact direct pins; one application lockfile"
+  },
+  "dependencyOverrides": [
+    {
+      "selector": "@esbuild-kit/core-utils@3.3.2>esbuild",
+      "version": "0.28.2",
+      "source": "https://registry.npmjs.org/esbuild/0.28.2",
+      "reason": "Resolve GHSA-67mh-4wv8-2f99 in inherited esbuild 0.18.20 without changing direct selected package versions",
+      "advisory": "https://github.com/evanw/esbuild/security/advisories/GHSA-67mh-4wv8-2f99",
+      "validation": [
+        "Drizzle TypeScript config/schema migration generation",
+        "React Vite Tailwind smoke build",
+        "Frozen install",
+        "Full dependency audit"
+      ]
+    }
+  ]
+}
