@@ -1,0 +1,25 @@
+node_modules/
+dist/
+.local/
+.env
+.env.*
+!.env.example
+playwright-report/
+test-results/
+*.log
+
+# Private database archives, keys, credentials and exported customer records.
+backups/
+exports/
+*.dump
+*.backup
+*.pgpass
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+*service-account*.json
+*app-secrets*.json
+setup-link.txt
+recovery-link.txt
