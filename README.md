@@ -1,5 +1,7 @@
 # Inaya CRM
 
+Moving to another Windows computer? Follow [New PC handoff](docs/new-pc-handoff.md). Code comes from GitHub; existing accounts/data require the separately transferred private database backup and fresh machine-local configuration.
+
 Inaya CRM is an internal lead management and reporting system for Inaya Domestic Workers. The business has one team and approximately 20 people. Staff will use the CRM on laptops and desktop computers.
 
 The local CRM includes individual login/recovery, roles, manual leads, assignments, editable details/comments with history, archive/restore, statuses, follow-ups, reports, spreadsheet import/CSV export, local backups and English/Arabic layouts. [Implementation and verification](docs/implementation.md) records the delivered scope; [Local operations](docs/operations.md) explains import, recovery and restore-tested backups. Hosting and Google connections are explicitly postponed.
